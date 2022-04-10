@@ -14,8 +14,7 @@
 
 程序不可避免存在bug，且程序也仅仅是为了尽快解决问题，肯定有考虑欠妥的地方，欢迎评论。
 
-随申办截图：
-![img.png](utils/img8.png)
+所解析的随申办截图格式见文末
 
 # 安装
 ```
@@ -62,3 +61,7 @@ python main_ssb.py --names C:\check_acid_test\backup\name_list.xlsx --images C:\
 
 在warning sheet中的3列分别记录了：需要提醒做核酸的同学名单，检测失败的图片名单（需要手工查验），检测成功但是与名单不符合的图片名单（需要手工查验）。
 ![img.png](utils/img6.png)
+
+# 所解析的随申办截图格式
+
+![img.png](utils/img8.png)

@@ -1,5 +1,5 @@
 '''
-    解析随身办的截图
+    助力上海2022抗疫，解析随申办核酸结果截图
 '''
 import pandas as pd
 import os

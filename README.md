@@ -29,13 +29,19 @@ pip install -r requirements.txt
 # 数据准备
 
 * 放置所有的照片在images文件夹中，如：
+
 ![img.png](utils/img1.png)
+
 * 放置学生信息统计表name_list.xlsx，如
+
 ![img.png](utils/img7.png)
+
 文件中也可以不包含证件号码信息，此时则无法处理重名的情况，需手工查验的需求增加
+
 ![img.png](utils/img2.png)
 
 * 在check_acid_test 目录中运行命令
+
 ```
 python main_ssb.py
 ```
@@ -60,6 +66,7 @@ python main_ssb.py --names C:\check_acid_test\backup\name_list.xlsx --images C:\
 ![img.png](utils/img5.png)
 
 在warning sheet中的3列分别记录了：需要提醒做核酸的同学名单，检测失败的图片名单（需要手工查验），检测成功但是与名单不符合的图片名单（需要手工查验）。
+
 ![img.png](utils/img6.png)
 
 # 所解析的随申办截图格式

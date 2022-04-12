@@ -1,7 +1,7 @@
 
 # 说明
 
-从2022年3月开始，上海经历了奥密克戎的袭击。大学老师的工作负担也直线上升，其中有一项工作是收集所有学生的核酸检查结果，手工统计非常耗费精力。白天要尽力服务学院几百位学生，晚上还学处理这些耗费精力的事情。
+从2022年3月开始，奥密克戎袭击了上海。大学老师的工作负担也直线上升，其中有一项工作是收集所有学生的核酸检查结果，手工统计非常耗费精力。白天要尽力服务学院几百位学生，晚上还学处理这些耗费精力的事情。
 
 老师们的身体渐渐吃不消。
 
@@ -17,9 +17,7 @@
 
 运行程序，需要最基本的编程基础知识。我尝试过转化可单独在windows上运行的exe文件，但是失败了，因此无法提供便捷运行的方式了。如果有知晓如何转换的，请提交代码，共同为社会贡献自己的力量。
 
-所解析的随申办截图格式见文末
-
-(还做了基于健康云截图的检测，还没有上传，如果有需要可以评论)
+所解析的随申办截图、健康运截图格式见文末。
 
 # 安装
 ```
@@ -37,6 +35,8 @@ pip install -r requirements.txt
 
 ![img.png](utils/img1.png)
 
+注意不能同时解析随身办和健康云截图，不可将两者混淆。
+
 * 放置学生信息统计表name_list.xlsx，如
 
 ![img.png](utils/img7.png)
@@ -49,31 +49,39 @@ pip install -r requirements.txt
 
 ```
 python main_ssb.py
+如果你需要解析健康云：
+python main_jky.py
 ```
 你也可以指定图片文件夹和name_list.xlsx位置
 
 ```
 python main_ssb.py --names C:\check_acid_test\backup\name_list.xlsx --images C:\check_acid_test\backup\images
+如果你需要解析健康云：
+python main_jky.py --names C:\check_acid_test\backup\name_list.xlsx --images C:\check_acid_test\backup\images
 ```
 
 得到结果：
 
-![img.png](utils/img3.png)
+随申办结果：![img.png](utils/img3.png)
 
 * 同一目录下，会多出一个```name_list_{当前时间}.xlsx```的文件
 
 在该文件的overview sheet中，会多出4列，test列记录了学生是否已经做核酸（1是做了核酸），img列记录了与该学生匹配的图片名字，其他3列根据列名即可知晓含义。
 
-![img.png](utils/img4.png)
+随申办结果：![img.png](utils/img4.png)
 
 在img_detection_res sheet中，存储了图片检测结果， matching列，1代表了与输入的name_list.xlsx名单信息能匹配上。
 
-![img.png](utils/img5.png)
+随申办结果：![img.png](utils/img5.png)
 
 在warning sheet中的3列分别记录了：需要提醒做核酸的同学名单，检测失败的图片名单（需要手工查验），检测成功但是与名单不符合的图片名单（需要手工查验）。
 
-![img.png](utils/img6.png)
+随申办结果：![img.png](utils/img6.png)
 
 # 所解析的随申办截图格式
 
 ![img.png](utils/img8.png)
+
+# 所解析的健康云截图格式
+
+![img.png](utils/img9.png)

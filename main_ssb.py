@@ -7,6 +7,7 @@ import datetime
 import argparse
 from tqdm import tqdm
 from paddleocr import PaddleOCR
+import re
 
 def parse_args():
     parser = argparse.ArgumentParser('training')
@@ -105,7 +106,8 @@ def main():
             # 匹配id后4位
             ind_id_postfix = all_students['证件号码'].str.endswith(id[-4:])
         # 匹配name_postfix
-        name_postfix = name.split('*')[-1]
+        # name_postfix = name.split('*')[-1]
+        name_postfix = re.sub(r'[^\u4e00-\u9fa5]','',name)  # 只保留中文
         ind_name_postfix = all_students['姓名'].str.endswith(name_postfix)
 
         # 以下每一项中，有且只有一行符合就算符合。有一项符合即可算匹配成功

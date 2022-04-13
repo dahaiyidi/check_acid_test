@@ -17,7 +17,7 @@
 
 运行程序，需要最基本的编程基础知识。我尝试过转化可单独在windows上运行的exe文件，但是失败了，因此无法提供便捷运行的方式了。如果有知晓如何转换的，请提交代码，共同为社会贡献自己的力量。
 
-所解析的随申办截图、健康运截图格式见文末。
+所解析的随申办截图截图格式见文末。
 
 # 安装
 ```
@@ -35,8 +35,6 @@ pip install -r requirements.txt
 
 ![img.png](utils/img1.png)
 
-注意不能同时解析随身办和健康云截图，不可将两者混淆。
-
 * 放置学生信息统计表name_list.xlsx，如
 
 ![img.png](utils/img7.png)
@@ -49,15 +47,11 @@ pip install -r requirements.txt
 
 ```
 python main_ssb.py
-如果你需要解析健康云：
-python main_jky.py
 ```
 你也可以指定图片文件夹和name_list.xlsx位置
 
 ```
 python main_ssb.py --names C:\check_acid_test\backup\name_list.xlsx --images C:\check_acid_test\backup\images
-如果你需要解析健康云：
-python main_jky.py --names C:\check_acid_test\backup\name_list.xlsx --images C:\check_acid_test\backup\images
 ```
 
 得到结果：
@@ -81,7 +75,3 @@ python main_jky.py --names C:\check_acid_test\backup\name_list.xlsx --images C:\
 # 所解析的随申办截图格式
 
 ![img.png](utils/img8.png)
-
-# 所解析的健康云截图格式
-
-![img.png](utils/img9.png)

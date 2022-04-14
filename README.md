@@ -19,6 +19,17 @@
 
 所解析的随申办截图截图格式见文末。
 
+我也用qpt模块生成了可以在windows直接双击运行的exe文件，下载方式：
+
+百度网盘：
+
+链接：https://pan.baidu.com/s/1Ux5lm--sUYL2D3sFMJ5pFw 
+提取码：8888
+
+腾讯微云：
+
+链接：https://share.weiyun.com/PZSEjQks 密码：888888
+
 # 安装
 ```
 git clone https://github.com/dahaiyidi/check_acid_test.git

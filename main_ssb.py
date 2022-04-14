@@ -52,7 +52,7 @@ def main():
     mapping = {'姓名': '姓名', '证件号码': '号码', '采样时间': '样时间', '检测结果': '结果'}
     data = pd.DataFrame(columns=ls + ['from', 'img'])  # 添加一列记录img name, 记录来源于健康云还是随申办
 
-    ocr = PaddleOCR(lang='ch', det_db_box_thresh=0.5, use_gpu = False) #,
+    ocr = PaddleOCR(lang='ch', det_db_box_thresh=0.5, use_gpu=False) #,
                             # det_model_dir=r'./model/det/ch/ch_PP-OCRv2_det_infer',
                             # rec_model_dir=r'./model/rec/ch/ch_PP-OCRv2_rec_infer',
                             # cls_model_dir=r'./model/cls/ch_ppocr_mobile_v2.0_cls_infer')  # need to run only once to download and load model into memory
@@ -118,7 +118,7 @@ def main():
                 break
 
         # 如果当前img无法完全检测到['姓名', '证件号码', '采样时间', '检测结果']， 跳转到下一个
-        print(cur, img_path)
+        # print(cur, img_path)
         if len(cur) != 4:
             ls_det_failed.append(img_path)
             continue
@@ -181,20 +181,24 @@ def main():
     ls_not_matching = data.loc[data['matching'] == 0, 'img'].tolist()
 
     # 将ls_det_failed，ls_not_matching对应的图片复制到放置到单独的文件夹
+    cur_time = datetime.datetime.now().strftime('%Y%m%d%H%M')
     if len(ls_det_failed) != 0:
-        os.mkdir('images_detected_failed')
+        folder_name = f'images_detected_failed_{cur_time}'
+        os.mkdir(folder_name)
         for file_name in ls_det_failed:
-            shutil.copyfile(os.path.join(img_folder, file_name), os.path.join('images_detected_failed', file_name))
+            shutil.copyfile(os.path.join(img_folder, file_name), os.path.join(folder_name, file_name))
 
     if len(ls_not_matching) != 0:
-        os.mkdir('images_detected_successfully_but_not_matching')
+        folder_name = f'images_detected_successfully_but_not_matching_{cur_time}'
+        os.mkdir(folder_name)
         for file_name in ls_not_matching:
-            shutil.copyfile(os.path.join(img_folder, file_name),  os.path.join('images_detected_successfully_but_not_matching', file_name))
+            shutil.copyfile(os.path.join(img_folder, file_name),  os.path.join(folder_name, file_name))
 
     if len(ls_jky) != 0:
-        os.mkdir('from_jiankangyun')
+        folder_name = f'from_jiankangyun_{cur_time}'
+        os.mkdir(folder_name)
         for file_name in ls_jky:
-            shutil.copyfile(os.path.join(img_folder, file_name),  os.path.join('from_jiankangyun', file_name))
+            shutil.copyfile(os.path.join(img_folder, file_name),  os.path.join(folder_name, file_name))
 
     # print 检测结果
     print('\033[1;31;40m Detect failed imgs:\033[0m')
@@ -207,7 +211,7 @@ def main():
     print(ls_jky)
 
     # 导出文件
-    output = f"{os.path.basename(args.names).split('.')[0]}_{datetime.datetime.now().strftime('%Y%m%d%H%M')}.xlsx"
+    output = f"{os.path.basename(args.names).split('.')[0]}_{cur_time}.xlsx"
     with pd.ExcelWriter(output) as writer:
         all_students.to_excel(writer, sheet_name='overview')
         data.to_excel(writer, sheet_name='img_detection_res')
